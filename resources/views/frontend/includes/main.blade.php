@@ -9,6 +9,10 @@
 @extends('frontend.layouts.master')
 @section('content')
 
+    <div class="">
+
+    </div>
+
 <!--================Main Content Area =================-->
 <section class="home_sidebar_area">
     <div class="container">
@@ -202,11 +206,18 @@
                                             <h5 class="sale">Sale</h5>
                                         </div>
                                         <div class="l_p_text">
-                                            <ul>
+
+                                            <form action="{{route('cart.store')}}" method="POST">
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="id" value="{{$eventEquipement->product->id}}">
+                                                <input type="hidden" name="designation"  value="{{$eventEquipement->product->designation}}">
+                                                <input type="hidden" name="price" value="{{$eventEquipement->product->rental_price}}">
+                                                <ul>
                                                 <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                                <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
+                                                <li> <button class="add_cart_btn" type="submit">Add To Cart</button></li>
                                                 <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                                             </ul>
+                                            </form>
                                             <h4>{{$eventEquipement->designation}}</h4>
                                             <h5> {{$eventEquipement->product->rental_price}} CFA</h5>
                                         </div>
@@ -222,11 +233,17 @@
                                             <h5 class="sale">Sale</h5>
                                         </div>
                                         <div class="l_p_text">
-                                            <ul>
-                                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                                <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                            </ul>
+                                            <form action="{{route('cart.store')}}" method="POST">
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="id" value="{{$room->product->id}}">
+                                                <input type="hidden" name="designation"  value="{{$room->product->designation}}">
+                                                <input type="hidden" name="price" value="{{$room->product->rental_price}}">
+                                                <ul>
+                                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                                    <li> <button class="add_cart_btn" type="submit">Add To Cart</button></li>
+                                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                                </ul>
+                                            </form>
                                             <h4>{{$room->name}}</h4>
                                             <h5> {{$room->product->rental_price}} CFA</h5>
                                         </div>
@@ -242,11 +259,17 @@
                                             <h5 class="sale">Sale</h5>
                                         </div>
                                         <div class="l_p_text">
-                                            <ul>
-                                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                                <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                            </ul>
+                                            <form action="{{route('cart.store')}}" method="POST">
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="id" value="{{$toolspro->product->id}}">
+                                                <input type="hidden" name="designation"  value="{{$toolspro->product->designation}}">
+                                                <input type="hidden" name="price" value="{{$toolspro->product->rental_price}}">
+                                                <ul>
+                                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                                    <li> <button class="add_cart_btn" type="submit">Add To Cart</button></li>
+                                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                                </ul>
+                                            </form>
                                             <h4>{{$toolspro->designation}}</h4>
                                             <h5> {{$toolspro->product->rental_price}} CFA</h5>
                                         </div>
@@ -262,11 +285,19 @@
                                             <h5 class="sale">Sale</h5>
                                         </div>
                                         <div class="l_p_text">
-                                            <ul>
-                                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                                <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                            </ul>
+                                            <form action="{{route('cart.store')}}" method="POST">
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="id" value="{{$vehicule->product->id}}">
+                                                <input type="hidden" name="designation"  value="{{$vehicule->product->designation}}">
+                                                <input type="hidden" name="price" value="{{$vehicule->product->rental_price}}">
+                                                <ul>
+                                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                                    <li> <button class="add_cart_btn" type="submit">Add To Cart</button></li>
+                                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                                </ul>
+                                            </form>
+
+
                                             <h4>{{$vehicule->fuel_name}}</h4>
                                             <h5> {{$vehicule->product->rental_price}} CFA</h5>
                                         </div>
@@ -283,11 +314,17 @@
                                             <h5 class="sale">Sale</h5>
                                         </div>
                                         <div class="l_p_text">
-                                            <ul>
-                                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
-                                                <li><a class="add_cart_btn" href="#">Add To Cart</a></li>
-                                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
-                                            </ul>
+                                            <form action="{{route('cart.store')}}" method="POST">
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="id" value="{{$provider->product->id}}">
+                                                <input type="hidden" name="designation"  value="{{$provider->product->designation}}">
+                                                <input type="hidden" name="price" value="{{$provider->product->rental_price}}">
+                                                <ul>
+                                                    <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                                    <li> <button class="add_cart_btn" type="submit">Add To Cart</button></li>
+                                                    <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                                </ul>
+                                            </form>
                                             <h4>{{$provider->name}}</h4>
                                             <h5> {{$provider->product->rental_price}} CFA</h5>
                                         </div>
@@ -575,6 +612,22 @@
              $('#result').fadeOut();
         });
     })
+</script>
+
+<script>
+  $(function () {
+      @if(\Illuminate\Support\Facades\Session::has('message'))
+      iziToast.show({
+          title: 'Ajout au panier!',
+          position: 'topCenter',
+          color:"blue"
+      });
+
+      @endif
+  })
+
+
+
 </script>
 
 @endsection

@@ -55,6 +55,11 @@
 <script src="{{asset("public/frontend/js/popper.min.js")}}"></script>
 <script src="{{asset("public/frontend/js/bootstrap.min.js")}}"></script>
 
+<!-- JS Libraies -->
+<script src="{{asset("backend/assets/modules/izitoast/js/iziToast.min.js")}}"></script>
+
+<!-- Page Specific JS File -->
+<script src="{{asset("backend/assets/js/page/modules-toastr.js")}}"></script>
 <!-- Rev slider js -->
 <script src="{{asset("public/frontend/vendors/revolution/js/jquery.themepunch.tools.min.js")}}"></script>
 <script src="{{asset("public/frontend/vendors/revolution/js/jquery.themepunch.revolution.min.js")}}"></script>
@@ -77,6 +82,12 @@
 <script src="{{asset("public/frontend/vendors/vertical-slider/js/jQuery.verticalCarousel.js")}}"></script>
 <script src="{{asset("public/frontend/vendors/jquery-ui/jquery-ui.js")}}"></script>
 <script src="{{asset("public/frontend/js/theme.js")}}"></script>
+<script>
+    $(function () {
+        $('.cart_cart a').css('content','52');
+    });
+</script>
+
 @yield("scripts")
 
 </body>

@@ -13,11 +13,11 @@
  ** Site routes **
  ********************************/
 Route::group(['prefix' => '/'], function () {
-    Route::get('/', 'FrontController@index');
+    Route::get('/', 'FrontController@index')->name('/');
     Route::get('/get-sector/{type}', 'FrontController@getSector');
     Route::get('/get-family/{id}', 'FrontController@getFamily');
     Route::get('/get-category/{id}', 'FrontController@getCategory');
-    Route::get('/get-product/{id}', 'FrontController@getProduct');
+    Route::get('/get-product/{id}', 'FrontController@getProduct')->name("getProduct");
     Route::get('/shopping-cart', 'FrontController@shoppingCart');
 
     Route::post('searchproduct','FrontController@searchproduct')->name('searchproduct');
@@ -47,6 +47,15 @@ Route::group(['prefix' => 'admin'], function () {
     }) ;
 
 });
+
+/**
+ * Routes cart
+ */
+
+Route::get('cart','CartController@index')->name('cart.index');
+Route::post('cart','CartController@store')->name('cart.store');
+Route::get('cart','CartController@update')->name('cart.update');
+Route::delete('cart/{product}','CartController@destroy')->name('cart.destroy');
 
 
 Auth::routes();

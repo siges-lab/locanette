@@ -50,6 +50,7 @@ foreach ($providers as $provider){
 
 ?>
 
+
 <!--================Menu Area =================-->
 <header class="shop_header_area carousel_menu_area" data-th-fragment="master-header">
     <div class="carousel_top_header black_top_header row m0">
@@ -149,7 +150,7 @@ foreach ($providers as $provider){
                     <ul class="navbar-nav justify-content-end">
 
                         <li class="user_icon"><a href="#"><i class="icon-user icons"></i></a></li>
-                        <li class="cart_cart"><a href="#"><i class="icon-handbag icons"></i></a></li>
+                        <li class="cart_cart"><a href="{{url('/shopping-cart')}}"><i class="icon-handbag icons"></i></a></li>
                     </ul>
                 </div>
             </nav>

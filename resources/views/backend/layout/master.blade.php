@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{{asset("backend/assets/modules/dropzonejs/dropzone.css")}}">
 
     <link rel="stylesheet" href="{{asset("backend/assets/modules/izitoast/css/iziToast.min.css")}}">
+
+    <!-- Page Specific JS File -->
+    <script src="{{asset("backend/assets/js/page/modules-toastr.js")}}"></script>
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{asset("backend/assets/modules/jqvmap/dist/jqvmap.min.css")}}">
     <link rel="stylesheet" href="{{asset("backend/assets/modules/summernote/summernote-bs4.css")}}">

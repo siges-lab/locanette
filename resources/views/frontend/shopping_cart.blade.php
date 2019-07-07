@@ -24,92 +24,75 @@
 
     <!--================Shopping Cart Area =================-->
     <section class="shopping_cart_area p_100">
+        <div class="row">
+            <div class="col-md-12 offset-4">
+                @if(session()->has('success_message'))
+                <span class="alert alert-info"> {{session()->get("success_message")}} </span>
+                @endif
+            </div>
+        </div>
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-8">
                     <div class="cart_items">
-                        <h3>Your Cart Items</h3>
+                        <h3>Votre Panier</h3>
                         <div class="table-responsive-md">
                             <table class="table">
                                 <tbody>
+
+                                @forelse(\Gloudemans\Shoppingcart\Facades\Cart::content() as $items)
+
                                 <tr>
                                     <th scope="row">
-                                        <img src="img/icon/close-icon.png" alt="">
+
                                     </th>
                                     <td>
                                         <div class="media">
                                             <div class="d-flex">
-                                                <img src="img/product/cart-product/cart-3.jpg" alt="">
+
+                                                <img src="{{asset('public/pictures/products/'.$items->model->first()->product_pictures->first()->link)}}" height="50" width="60" alt="">
+
+
                                             </div>
                                             <div class="media-body">
-                                                <h4>Round Sunglasses</h4>
+                                                <h4><a href="{{route('getProduct',$items->id)}}">{{$items->model->designation}}</a></h4>
                                             </div>
                                         </div>
                                     </td>
-                                    <td><p class="red">$150</p></td>
+                                    <td><p class="red">{{$items->price}} CFA</p></td>
                                     <td>
                                         <div class="quantity">
                                             <h6>Quantity</h6>
                                             <div class="custom">
-                                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                                <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
+                                                <button   onclick="var result = document.getElementById('sst{{$items->id}}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false; " data-id="{{$items->id}}" class="reduced decrement items-count" type="button"><i class="icon_minus-06"></i></button>
+                                                <input type="text" data-rows="{{$items->rowId}}" name="qty" id="sst{{$items->id}}" maxlength="12" @if($items->qty) value="{{$items->qty}}"  @endif title="Quantity:" class="input-text qty">
+                                                <button onclick="var result = document.getElementById('sst{{$items->id}}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase decrement items-count" type="button">
+                                                    <i class="icon_plus"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </td>
-                                    <td><p>$150</p></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <img src="img/icon/close-icon.png" alt="">
-                                    </th>
                                     <td>
-                                        <div class="media">
-                                            <div class="d-flex">
-                                                <img src="img/product/cart-product/cart-4.jpg" alt="">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4>Adidas Trefoil Black </h4>
-                                            </div>
+                                        <form action="{{route('cart.destroy',$items->rowId)}}" method="POST" >
+                                            {{csrf_field()}}
+                                            {{method_field("DELETE")}}
+                                            <button type="submit" class="text-danger"> <i class="fa fa-trash text-danger"></i> </button>
+                                        </form>
+
+                                    </td>
+                                </tr>
+
+                                    @empty
+                                    <div class="row">
+                                        <div class="col-md-12 text-center ">
+                                               <span class="text-info"> <h3> Votre panier est vide </h3> </span>
                                         </div>
-                                    </td>
-                                    <td><p class="red">$150</p></td>
-                                    <td>
-                                        <div class="quantity">
-                                            <h6>Quantity</h6>
-                                            <div class="custom">
-                                                <button onclick="var result = document.getElementById('sst2'); var sst2 = result.value; if( !isNaN( sst2 ) &amp;&amp; sst2 > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                                <input type="text" name="qty" id="sst2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                                <button onclick="var result = document.getElementById('sst2'); var sst2 = result.value; if( !isNaN( sst2 )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><p>$250</p></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                    </th>
-                                </tr>
-                                <tr class="last">
-                                    <th scope="row">
-                                        <img src="img/icon/cart-icon.png" alt="">
-                                    </th>
-                                    <td>
-                                        <div class="media">
-                                            <div class="d-flex">
-                                                <h5>Cupon code</h5>
-                                            </div>
-                                            <div class="media-body">
-                                                <input type="text" placeholder="Apply cuopon">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><p class="red"></p></td>
-                                    <td>
-                                        <h3>update cart</h3>
-                                    </td>
-                                    <td></td>
-                                </tr>
+                                    </div>
+
+                               @endforelse
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -117,43 +100,33 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="cart_totals_area">
-                        <h4>Cart Totals</h4>
+                        <h4> Total</h4>
                         <div class="cart_t_list">
                             <div class="media">
                                 <div class="d-flex">
-                                    <h5>Subtotal</h5>
+                                    <h5>quantite</h5>
                                 </div>
                                 <div class="media-body">
-                                    <h6>$14</h6>
+                                    <h6> <span id="qtycart">{{\Gloudemans\Shoppingcart\Facades\Cart::count()}}</span> </h6>
                                 </div>
                             </div>
                             <div class="media">
                                 <div class="d-flex">
-                                    <h5>Shipping</h5>
+                                    <h5>Sous Total</h5>
                                 </div>
                                 <div class="media-body">
-                                    <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model tex</p>
+                                    <h6><span id="soustotalcart">{{\Gloudemans\Shoppingcart\Facades\Cart::subtotal()}} </span> CFA</h6>
                                 </div>
                             </div>
-                            <div class="media">
-                                <div class="d-flex">
 
-                                </div>
-                                <div class="media-body">
-                                    <select class="selectpicker">
-                                        <option>Calculate Shipping</option>
-                                        <option>Calculate Shipping</option>
-                                        <option>Calculate Shipping</option>
-                                    </select>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="total_amount row m0 row_disable">
                             <div class="float-left">
                                 Total
                             </div>
                             <div class="float-right">
-                                $400
+                                <span id="totalcart">{{\Gloudemans\Shoppingcart\Facades\Cart::total()}}</span> CFA
                             </div>
                         </div>
                     </div>
@@ -163,5 +136,40 @@
         </div>
     </section>
     <!--================End Shopping Cart Area =================-->
+@endsection
+
+@section("script")
+    <script>
+        $(function () {
+
+            var path = "{{ route('cart.update') }}";
+
+            $('.decrement').on('click',function () {
+
+               $val =  $(this).parent().find('input').val() ;
+               $rowsId =  $(this).parent().find('input').attr("data-rows");
+                $.get(path, { rowId: $rowsId , quantity : $val}, function (data) {
+
+                    $("#soustotalcart").html(data.subtotal);
+                    $("#totalcart").html(data.total);
+                    $("#qtycart").html(data.count);
+                   console.log(data) ;
+                });
+
+            }) ;
+
+            $('.input-text').on("keyup",function () {
+                $val = $(this).val() ;
+                $rowsId = $(this).attr('data-rows') ;
+                $.get(path, { rowId: $rowsId , quantity : $val}, function (data) {
+
+                    $("#soustotalcart").html(data.subtotal);
+                    $("#totalcart").html(data.total);
+                    $("#qtycart").html(data.count);
+                    console.log(data) ;
+                });
+            })
+        })
+    </script>
 @endsection
 
